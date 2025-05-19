@@ -1,79 +1,64 @@
-' ============================================
-' 📬 Notification Service - README
-' ============================================
+# 📬 Notification Service
 
-' A Spring Boot microservice for sending notifications (Email, SMS, In-App)
-' using Kafka and storing them in an H2 in-memory database.
+A Spring Boot microservice for sending notifications (Email, SMS, In-App) using Kafka and storing them in an H2 in-memory database.
 
-' --------------------------------------------
-' 🚀 Features
-' --------------------------------------------
-' - Send notifications via REST API
-' - Store notifications in H2 database
-' - Process notifications asynchronously using Kafka
-' - Retrieve user-specific notifications
-' - Supports multiple types: EMAIL, SMS, IN_APP
+---
 
-' --------------------------------------------
-' 🔧 Tech Stack
-' --------------------------------------------
-' - Java 17
-' - Spring Boot
-' - Kafka
-' - H2 Database
-' - Maven
+## 🚀 Features
 
-' --------------------------------------------
-' 📡 API Endpoints
-' --------------------------------------------
+- Send notifications via REST API  
+- Store notifications in H2 database  
+- Process notifications asynchronously using Kafka  
+- Retrieve user-specific notifications  
+- Supports multiple types: EMAIL, SMS, IN_APP
 
-' POST /api/notifications
-' Request Body:
-' {
-'   "userId": 1,
-'   "message": "Your package has been shipped.",
-'   "type": "EMAIL"
-' }
+---
 
-' GET /api/users/{userId}/notifications
-' Returns all notifications for a user
+## 🔧 Tech Stack
 
-' --------------------------------------------
-' ⚙️ Setup Instructions
-' --------------------------------------------
+- Java 17  
+- Spring Boot  
+- Apache Kafka  
+- H2 Database  
+- Maven
 
-' 1. Clone the repository:
-'    git clone https://github.com/ChirayuSharmaWork/notification-service.git
-'    cd notification-service
+---
 
-' 2. Start Kafka and Zookeeper locally (via Docker or your own setup)
+## 📡 API Endpoints
 
-' 3. Run the Spring Boot application:
-'    ./mvnw spring-boot:run
+### POST `/api/notifications`
 
-' 4. Access H2 Console at:
-'    http://localhost:8080/h2-console
-'    JDBC URL: jdbc:h2:mem:testdb
-'    Username: sa
+Sends a new notification.
 
-' --------------------------------------------
-' 📦 Assumptions
-' --------------------------------------------
-' - Kafka is running at localhost:9092
-' - Notifications are simple messages with userId, message, type, and timestamp
+**Example Request Body:**
 
-' --------------------------------------------
-' 📁 Folder Structure
-' --------------------------------------------
-' - controller/     → API controllers
-' - service/        → Business logic
-' - model/          → Entity classes
-' - repository/     → Spring Data JPA layer
-' - kafka/          → Kafka producer & consumer
+json
+{
+  "userId": 1,
+  "message": "Your package has been shipped.",
+  "type": "EMAIL"
+}
+GET /api/users/{userId}/notifications
+Retrieves all notifications for the specified user.
 
-' --------------------------------------------
-' 🧪 Future Improvements
-' --------------------------------------------
-' - Retry logic for failed notifications
-' - Swagger/OpenAPI integration
-' - Unit and integration tests
+## ⚙️ Setup Instructions
+
+- 1. Clone the repository
+- git clone https://github.com/ChirayuSharmaWork/notification-service.git
+- cd notification-service
+- 2. Start Kafka and Zookeeper locally
+- You can use Docker or any other method. Make sure Kafka is running on localhost:9092.
+
+- Example Docker command to start Kafka and Zookeeper:
+
+- docker-compose up -d
+- (Make sure you have a docker-compose.yml file configured for Kafka and Zookeeper or follow Kafka's official setup instructions.)
+
+- 3. Run the Spring Boot application
+- ./mvnw spring-boot:run
+- 4. Access the H2 Console
+- Open your browser and go to: http://localhost:8080/h2-console
+- Use the following credentials:
+- JDBC URL: jdbc:h2:mem:testdb
+- Username: sa
+
